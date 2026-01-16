@@ -1,0 +1,29 @@
+.login-header-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100px;
+}
+
+.login-input .MuiInputBase-input {
+  color: #b3b3b3ff;
+}
+
+.login-input .MuiInputLabel-root {
+  color: #b3b3b3ff;
+}
+
+.login-input .MuiInputLabel-root.Mui-focused {
+  color: #b3b3b3ff;
+}
+
+.login-input .MuiOutlinedInput-root fieldset {
+  border-color: #b3b3b3ff;
+}
+
+.login-input .MuiOutlinedInput-root:hover fieldset {
+  border-color: #b3b3b3ff;
+}
+
+.login-input .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #b3b3b3ff;
+}

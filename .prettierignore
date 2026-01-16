@@ -1,0 +1,5 @@
+*.md
+tsconfig.json
+tsconfig.*.json
+package.json
+package-lock.json
