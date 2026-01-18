@@ -2,9 +2,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { Page } from './pages/enums.ts';
-import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
-import { createTheme, ThemeProvider } from '@mui/material';
+import HomePage from './pages/HomePage';
+import { ThemeProvider } from '@mui/material';
+import { theme } from '@/theme';
 
 import type { ThemeOptions } from '@mui/material/styles';
 
@@ -24,16 +25,16 @@ export const themeOptions: ThemeOptions = {
 
 function App(): React.JSX.Element {
     return (
-        <ThemeProvider theme={createTheme(themeOptions)}>
-            <Router>
-                <Routes>
-                    <Route path={Page.Login} Component={LoginPage} />
+        <ThemeProvider theme={theme}>
+                <Router>
+                    <Routes>
+                        <Route path={Page.Home} Component={HomePage} />
+                        <Route path={Page.Login} Component={LoginPage} />
 
-                    <Route element={<ProtectedRoute />}>
-                        <Route path={Page.MainPage} Component={MainPage} />
-                    </Route>
-                </Routes>
-            </Router>
+                        <Route element={<ProtectedRoute />}>
+                        </Route>
+                    </Routes>
+                </Router>
         </ThemeProvider>
     );
 }
