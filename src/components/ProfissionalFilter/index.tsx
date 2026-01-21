@@ -16,15 +16,19 @@ export const ProfissionalFilter: React.FC<ProfissionalFilterProps> = ({
     onFiltroChange,
 }) => {
     return (
-        <Stack spacing={3} sx={{ mb: { xs: 6, md: 8 } }}>
+        <Stack
+            spacing={3}
+            alignItems="center"
+            sx={{ mb: { xs: 6, md: 8 }, width: '100%' }}
+        >
             {/* Search */}
-            <Box sx={{ maxWidth: 600, mx: 'auto', width: '100%' }}>
+            <Box sx={{ width: '100%', maxWidth: 600 }}>
                 <TextField
                     fullWidth
                     variant="outlined"
                     placeholder="Buscar por nome, especialidade ou registro..."
                     value={searchTerm}
-                    onChange={(e) => onSearchChange(e. target.value)}
+                    onChange={(e) => onSearchChange(e.target.value)}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
@@ -42,9 +46,9 @@ export const ProfissionalFilter: React.FC<ProfissionalFilterProps> = ({
                                 borderColor: 'divider',
                             },
                             '&:hover fieldset': {
-                                borderColor: 'primary. main',
+                                borderColor: 'primary.main',
                             },
-                            '&. Mui-focused fieldset': {
+                            '&.Mui-focused fieldset': {
                                 borderColor: 'primary.main',
                             },
                         },
@@ -60,13 +64,12 @@ export const ProfissionalFilter: React.FC<ProfissionalFilterProps> = ({
                     borderColor: 'divider',
                     borderRadius: 3,
                     overflow: 'hidden',
-                    maxWidth: 'fit-content',
-                    mx:  'auto',
                 }}
             >
                 <Tabs
                     value={filtroTipo}
                     onChange={(_, newValue) => onFiltroChange(newValue)}
+                    centered
                     sx={{
                         minHeight: 56,
                         '& .MuiTab-root': {
@@ -76,49 +79,36 @@ export const ProfissionalFilter: React.FC<ProfissionalFilterProps> = ({
                             minHeight: 56,
                             px: { xs: 3, sm: 4 },
                             transition: 'all 0.3s',
+                            zIndex: 1,
                         },
-                        '& . Mui-selected': {
-                            color: 'white ! important',
+                        '& .Mui-selected': {
+                            color: 'white',
                         },
                         '& .MuiTabs-indicator': {
                             height: '100%',
                             borderRadius: 2,
                             zIndex: 0,
-                            background: 
+                            background:
                                 filtroTipo === 0
                                     ? 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)'
                                     : filtroTipo === 1
-                                    ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-                                    : 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                                        ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+                                        : 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
                         },
                     }}
                 >
-                    <Tab
-                        icon={<ViewModule />}
-                        iconPosition="start"
-                        label="Todos"
-                        sx={{
-                            color: filtroTipo === 0 ?  'white' : 'text.primary',
-                            zIndex: 1,
-                        }}
-                    />
+                    <Tab icon={<ViewModule />} iconPosition="start" label="Todos" />
                     <Tab
                         icon={<Restaurant />}
                         iconPosition="start"
                         label="Nutricionistas"
-                        sx={{
-                            color: filtroTipo === 1 ? 'white' : '#059669',
-                            zIndex: 1,
-                        }}
+                        sx={{ color: filtroTipo === 1 ? 'white' : '#059669' }}
                     />
                     <Tab
                         icon={<Psychology />}
                         iconPosition="start"
                         label="Psicólogos"
-                        sx={{
-                            color:  filtroTipo === 2 ? 'white' : '#7c3aed',
-                            zIndex: 1,
-                        }}
+                        sx={{ color: filtroTipo === 2 ? 'white' : '#7c3aed' }}
                     />
                 </Tabs>
             </Paper>

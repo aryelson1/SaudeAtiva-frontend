@@ -10,7 +10,7 @@ import {
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
-export const HeroSection:  React.FC = () => {
+export const HeroSection: React.FC = () => {
     const navigate = useNavigate();
 
     return (
@@ -27,31 +27,31 @@ export const HeroSection:  React.FC = () => {
             <Box
                 sx={{
                     position: 'absolute',
-                    top:  -100,
+                    top: -100,
                     right: -100,
                     width: 400,
                     height: 400,
                     borderRadius: '50%',
-                    background:  'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
                     display: { xs: 'none', md: 'block' },
                 }}
             />
             <Box
                 sx={{
-                    position:  'absolute',
+                    position: 'absolute',
                     bottom: -150,
                     left: -150,
                     width: 500,
                     height: 500,
                     borderRadius: '50%',
-                    background:  'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
                     display: { xs: 'none', md: 'block' },
                 }}
             />
 
             <Container maxWidth="lg">
                 <Grid container spacing={{ xs: 4, md: 8 }} alignItems="center">
-                    <Grid sx={{xs:12, md:6}}>
+                    <Grid sx={{ xs: 12, md: 6 }}>
                         <Stack spacing={3}>
                             {/* Badge */}
                             <Box>
@@ -99,12 +99,12 @@ export const HeroSection:  React.FC = () => {
                                 variant="h6"
                                 sx={{
                                     color: 'text.secondary',
-                                    fontSize: { xs:  '1.125rem', md: '1.25rem' },
+                                    fontSize: { xs: '1.125rem', md: '1.25rem' },
                                     lineHeight: 1.6,
                                     maxWidth: 540,
                                 }}
                             >
-                                Conecte-se com os melhores nutricionistas e psicólogos. 
+                                Conecte-se com os melhores nutricionistas e psicólogos.
                                 Agende consultas online ou presenciais em segundos.
                             </Typography>
 
@@ -130,7 +130,7 @@ export const HeroSection:  React.FC = () => {
                                     href="#profissionais"
                                     sx={{
                                         borderWidth: 2,
-                                        borderColor:  'primary.main',
+                                        borderColor: 'primary.main',
                                         color: 'primary. main',
                                         px: 4,
                                         py: 2,
@@ -151,7 +151,7 @@ export const HeroSection:  React.FC = () => {
                                 spacing={4}
                                 sx={{
                                     pt: 4,
-                                    borderTop:  '1px solid',
+                                    borderTop: '1px solid',
                                     borderColor: 'divider',
                                 }}
                             >
@@ -160,7 +160,7 @@ export const HeroSection:  React.FC = () => {
                                     { value: '50+', label: 'Profissionais', icon: <Star /> },
                                     { value: '98%', label: 'Satisfação', icon: <EmojiEvents /> },
                                 ].map((stat, index) => (
-                                    <Box key={index} sx={{ display:  { xs: index > 1 ? 'none' : 'block', sm: 'block' } }}>
+                                    <Box key={index} sx={{ display: { xs: index > 1 ? 'none' : 'block', sm: 'block' } }}>
                                         <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5 }}>
                                             <Box sx={{ color: 'primary.main', display: 'flex' }}>
                                                 {stat.icon}
@@ -170,7 +170,7 @@ export const HeroSection:  React.FC = () => {
                                             </Typography>
                                         </Stack>
                                         <Typography variant="caption" color="text.secondary" fontWeight={600}>
-                                            {stat. label}
+                                            {stat.label}
                                         </Typography>
                                     </Box>
                                 ))}
@@ -178,7 +178,7 @@ export const HeroSection:  React.FC = () => {
                         </Stack>
                     </Grid>
 
-                    <Grid sx={{ xs:12, md:6, display: { xs: 'none', md: 'block' } }}>
+                    <Grid sx={{ xs: 12, md: 6, display: { xs: 'none', md: 'block' } }}>
                         <Box
                             sx={{
                                 position: 'relative',
@@ -200,7 +200,7 @@ export const HeroSection:  React.FC = () => {
                                     maxWidth: 200,
                                     animation: 'float 6s ease-in-out infinite',
                                     '@keyframes float': {
-                                        '0%, 100%':  { transform: 'translateY(0px)' },
+                                        '0%, 100%': { transform: 'translateY(0px)' },
                                         '50%': { transform: 'translateY(-20px)' },
                                     },
                                 }}
@@ -230,7 +230,7 @@ export const HeroSection:  React.FC = () => {
                             {/* Floating Card 2 */}
                             <Box
                                 sx={{
-                                    position:  'absolute',
+                                    position: 'absolute',
                                     bottom: 60,
                                     right: 20,
                                     bgcolor: 'white',
@@ -245,7 +245,7 @@ export const HeroSection:  React.FC = () => {
                                     sx={{
                                         width: 48,
                                         height: 48,
-                                        borderRadius:  2,
+                                        borderRadius: 2,
                                         background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
                                         display: 'flex',
                                         alignItems: 'center',

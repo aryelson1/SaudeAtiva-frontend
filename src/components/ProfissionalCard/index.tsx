@@ -1,21 +1,21 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import {
   Card,
-  CardContent,
   Avatar,
   Typography,
   Box,
-  Stack,
-  Chip,
-  IconButton
+  IconButton,
+  Button,
+  Chip
 } from "@mui/material";
 import {
-  CalendarMonth,
-  WhatsApp,
   Instagram,
-  LinkedIn
+  LinkedIn,
+  WhatsApp,
+  CalendarMonth,
+  Verified
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import type { IProfissionalPublic } from "@/apis/professional.api.d";
 
 interface ProfissionalCardProps {
@@ -25,144 +25,156 @@ interface ProfissionalCardProps {
 export const ProfissionalCard: React.FC<ProfissionalCardProps> = ({ profissional }) => {
   const navigate = useNavigate();
 
+  const isNutricionista = (profissional.tipoLabel || profissional.tipo)
+    ?.toLowerCase()
+    .includes('nutri');
+
+  const isPsicologo = (profissional.tipoLabel || profissional.tipo)
+    ?.toLowerCase()
+    .includes('psico');
+
+  const gradientBg = isNutricionista
+    ? 'linear-gradient(180deg, #ECFDF5 0%, #FFFFFF 60%)'
+    : isPsicologo
+    ? 'linear-gradient(180deg, #F3E8FF 0%, #FFFFFF 60%)'
+    : 'linear-gradient(180deg, #EEF2FF 0%, #FFFFFF 60%)';
+
+  const accentColor = isNutricionista
+    ? '#16A34A'
+    : isPsicologo
+    ? '#7C3AED'
+    : '#6366F1';
+
   return (
     <Card
       sx={{
-        height: "100%",
+        maxWidth: 360,
+        mx: "auto",
         borderRadius: 4,
-        transition: "all 0.3s",
-        border: "1px solid",
-        borderColor: "divider",
-        "&:hover": {
-          transform: "translateY(-8px)",
-          boxShadow: "0 12px 24px rgba(102,126,234,0.2)",
-          borderColor: "primary.main",
-        },
+        textAlign: "center",
+        p: 3,
+        background: gradientBg,
+        position: 'relative',
+        overflow: 'hidden',
+        transition: '0.3s',
+        '&:hover': {
+          boxShadow: 10,
+          transform: 'translateY(-6px)'
+        }
       }}
     >
-      <CardContent sx={{ textAlign: "center", p: 4 }}>
-        <Stack spacing={2.5} alignItems="center">
-          {/* Avatar */}
-          <Avatar
-            src={profissional.foto || undefined}
-            sx={{
-              width: 120,
-              height: 120,
-              border: "4px solid",
-              borderColor: "primary.main",
-              boxShadow: "0 4px 12px rgba(102,126,234,0.3)",
-            }}
+      {/* decorative blur */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: -40,
+          left: -40,
+          width: 120,
+          height: 120,
+          background: `radial-gradient(circle, ${accentColor}55, transparent 70%)`
+        }}
+      />
+
+      <Avatar
+        src={profissional.foto || undefined}
+        alt={profissional.nome}
+        sx={{
+          width: 96,
+          height: 96,
+          mx: 'auto',
+          mb: 2,
+          border: '4px solid white',
+          boxShadow: 3,
+          position: 'relative'
+        }}
+      />
+
+      <Typography variant="h6" fontWeight={700}>
+        {profissional.nome}
+      </Typography>
+
+      <Typography
+        variant="body2"
+        sx={{
+          color: accentColor,
+          fontWeight: 500,
+          mb: 1
+        }}
+      >
+        {profissional.tipoLabel || profissional.tipo}
+      </Typography>
+
+      {profissional.registro && (
+        <Chip
+          icon={<Verified />}
+          label={profissional.registro}
+          size="small"
+          sx={{
+            mb: 2,
+            backgroundColor: `${accentColor}22`,
+            color: 'primary.main',
+            fontWeight: 500
+          }}
+        />
+      )}
+
+      {profissional.bioResumo && (
+        <Typography variant="body2" sx={{ mb: 2 }}>
+          {profissional.bioResumo}
+        </Typography>
+      )}
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5, mb: 2 }}>
+        {profissional.instagram && (
+          <IconButton
+            component="a"
+            href={profissional.instagram}
+            target="_blank"
+            sx={{ backgroundColor: '#FCE7F3' }}
           >
-            {profissional.nome.charAt(0)}
-          </Avatar>
-
-          {/* Nome / Tipo */}
-          <Box>
-            <Typography variant="h5" fontWeight="bold">
-              {profissional.nome}
-            </Typography>
-
-            <Typography color="text.secondary">
-              {profissional.especialidade || profissional.tipoLabel}
-            </Typography>
-
-            {profissional.registro && (
-              <Chip
-                label={profissional.registro}
-                size="small"
-                color="primary"
-                variant="outlined"
-                sx={{ mt: 1 }}
-              />
-            )}
-          </Box>
-
-          {/* Bio */}
-          {(profissional.bioResumo || profissional.bio) && (
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                display: "-webkit-box",
-                WebkitLineClamp: 3,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-                textAlign: "center",
-              }}
-            >
-              {profissional.bioResumo || profissional.bio}
-            </Typography>
-          )}
-
-          {/* Redes sociais */}
-          <Stack direction="row" spacing={1}>
-            {profissional.whatsapp && (
-              <IconButton
-                component="a"
-                href={`https://wa.me/${profissional.whatsapp}`}
-                target="_blank"
-                sx={{ color: "#25D366" }}
-              >
-                <WhatsApp />
-              </IconButton>
-            )}
-
-            {profissional.instagram && (
-              <IconButton
-                component="a"
-                href={profissional.instagram}
-                target="_blank"
-                sx={{ color: "#E1306C" }}
-              >
-                <Instagram />
-              </IconButton>
-            )}
-
-            {profissional.linkedin && (
-              <IconButton
-                component="a"
-                href={profissional.linkedin}
-                target="_blank"
-                sx={{ color: "#0A66C2" }}
-              >
-                <LinkedIn />
-              </IconButton>
-            )}
-          </Stack>
-
-          {/* Botão CTA */}
-          <Box
-            component="button"
-            onClick={() => navigate(`/agendar/${profissional.id}`)}
-            sx={{
-              width: "100%",
-              border: "none",
-              borderRadius: 2,
-              py: 1.5,
-              px: 2,
-              fontWeight: "bold",
-              fontSize: "1rem",
-              textTransform: "none",
-              color: "white",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 1,
-              boxShadow: "0 4px 12px rgba(102,126,234,0.3)",
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              transition: "all 0.3s",
-              "&:hover": {
-                boxShadow: "0 6px 16px rgba(102,126,234,0.4)",
-                transform: "translateY(-2px)",
-              },
-            }}
+            <Instagram sx={{ color: '#DB2777' }} />
+          </IconButton>
+        )}
+        {profissional.linkedin && (
+          <IconButton
+            component="a"
+            href={profissional.linkedin}
+            target="_blank"
+            sx={{ backgroundColor: '#E0F2FE' }}
           >
-            <CalendarMonth />
-            Agendar atendimento
-          </Box>
-        </Stack>
-      </CardContent>
+            <LinkedIn sx={{ color: '#0284C7' }} />
+          </IconButton>
+        )}
+        {profissional.whatsApp && (
+          <IconButton
+            component="a"
+            href={`https://wa.me/${profissional.whatsApp}`}
+            target="_blank"
+            sx={{ backgroundColor: '#DCFCE7' }}
+          >
+            <WhatsApp sx={{ color: '#16A34A' }} />
+          </IconButton>
+        )}
+      </Box>
+
+      {/* <Button
+        fullWidth
+        size="large"
+        startIcon={<CalendarMonth />}
+        onClick={() => navigate(`/profissionais/${profissional.id}`)}
+        sx={{
+          borderRadius: 3,
+          py: 1.3,
+          fontWeight: 600,
+          background: `linear-gradient(90deg, ${accentColor}, ${accentColor}CC)`,
+          '&:hover': {
+            background: `linear-gradient(90deg, ${accentColor}DD, ${accentColor})`
+          }
+        }}
+        variant="contained"
+      >
+        Preencher Questionário
+      </Button> */}
     </Card>
   );
 };

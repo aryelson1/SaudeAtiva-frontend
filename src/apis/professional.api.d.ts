@@ -73,7 +73,7 @@ export interface IProfissionalPublic {
     totalAtendimentos: number;
     instagram?: string | null;
     linkedin?: string | null;
-    whatsapp?: string | null;
+    whatsApp?: string | null;
 }
 
 export interface IDisponibilidadePublic {

@@ -25,7 +25,7 @@ const HomePage: React.FC = () => {
     const loadProfissionais = async () => {
         setLoading(true);
         try {
-            const params:  any = {
+            const params: any = {
                 page: 1,
                 limit: 12,
             };
@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
             if (filtroTipo === 1) {
                 params.tipo = 'NUTRICIONISTA';
             } else if (filtroTipo === 2) {
-                params. tipo = 'PSICOLOGO';
+                params.tipo = 'PSICOLOGO';
             }
 
             if (searchTerm) {
@@ -52,75 +52,85 @@ const HomePage: React.FC = () => {
     };
 
     return (
-        <Box sx={{ minHeight: '100vh', bgcolor:  '#f8fafc' }}>
+        <Box sx={{ minHeight: '100vh', bgcolor: '#f8fafc' }}>
             <Header />
             <HeroSection />
-            <BenefitsSection />
+            {/* <BenefitsSection /> */}
             <ServicesSection />
 
             {/* Profissionais Section */}
             <Box sx={{ bgcolor: 'white', py: { xs: 10, md: 14 } }} id="profissionais">
                 <Container maxWidth="lg">
                     {/* Header */}
-                    <Stack spacing={2} sx={{ textAlign: 'center', mb:  { xs: 6, md:  8 } }}>
+                    <Stack spacing={2} sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
                         <Typography
                             variant="h3"
                             fontWeight="800"
-                            sx={{
-                                fontSize: { xs:  '2rem', sm: '2.5rem', md: '3rem' },
-                            }}
+                            sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}
                         >
                             Nossos Profissionais
                         </Typography>
+
                         <Typography
                             variant="h6"
                             color="text.secondary"
-                            sx={{
-                                fontSize: { xs:  '1rem', md: '1.125rem' },
-                                maxWidth: 600,
-                                mx: 'auto',
-                            }}
+                            sx={{ fontSize: { xs: '1rem', sm: '1.5rem', md: '1.5rem' } }}
                         >
                             Encontre o profissional ideal para cuidar da sua saúde
                         </Typography>
                     </Stack>
 
-                    {/* Filtros */}
-                    <ProfissionalFilter
-                        searchTerm={searchTerm}
-                        onSearchChange={setSearchTerm}
-                        filtroTipo={filtroTipo}
-                        onFiltroChange={setFiltroTipo}
-                    />
+                    {/* Conteúdo centralizado */}
+                    <Stack alignItems="center" spacing={6}>
+                        {/* Filtros */}
+                        <Box sx={{ width: '100%', maxWidth: 800 }}>
+                            <ProfissionalFilter
+                                searchTerm={searchTerm}
+                                onSearchChange={setSearchTerm}
+                                filtroTipo={filtroTipo}
+                                onFiltroChange={setFiltroTipo}
+                            />
+                        </Box>
 
-                    {/* Loading */}
-                    {loading ?  (
-                        <Box sx={{ display: 'flex', justifyContent: 'center', py: 12 }}>
-                            <CircularProgress size={60} thickness={4} />
-                        </Box>
-                    ) : profissionais.length === 0 ? (
-                        /* Empty State */
-                        <Box sx={{ textAlign: 'center', py:  12 }}>
-                            <SearchOff sx={{ fontSize: 120, color: 'text.disabled', mb: 3 }} />
-                            <Typography variant="h5" fontWeight="700" gutterBottom>
-                                Nenhum profissional encontrado
-                            </Typography>
-                            <Typography variant="body1" color="text.secondary">
-                                Tente ajustar os filtros de busca ou explore outras categorias
-                            </Typography>
-                        </Box>
-                    ) : (
-                        /* Grid de Profissionais */
-                        <Grid container spacing={{ xs: 3, sm: 3, md: 4 }}>
-                            {profissionais. map((prof) => (
-                                <Grid sx={{xs:12, sm:6, md:4}} key={prof.id}>
-                                    <ProfissionalCard profissional={prof} />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    )}
+                        {/* Loading */}
+                        {loading ? (
+                            <Box sx={{ display: 'flex', justifyContent: 'center', py: 12 }}>
+                                <CircularProgress size={60} thickness={4} />
+                            </Box>
+                        ) : profissionais.length === 0 ? (
+                            /* Empty State */
+                            <Box sx={{ textAlign: 'center', py: 12 }}>
+                                <SearchOff sx={{ fontSize: 120, color: 'text.disabled', mb: 3 }} />
+                                <Typography variant="h5" fontWeight="700" gutterBottom>
+                                    Nenhum profissional encontrado
+                                </Typography>
+                                <Typography variant="body1" color="text.secondary">
+                                    Tente ajustar os filtros de busca ou explore outras categorias
+                                </Typography>
+                            </Box>
+                        ) : (
+                            /* Grid de Profissionais */
+                            <Grid
+                                container
+                                spacing={{ xs: 3, sm: 3, md: 4 }}
+                                justifyContent="center"
+                            >
+                                {profissionais.map((prof) => (
+                                    <Grid
+                                        spacing={{xs:12,sm:6,md:4}}
+                                        key={prof.id}
+                                        display="flex"
+                                        justifyContent="center"
+                                    >
+                                        <ProfissionalCard profissional={prof} />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        )}
+                    </Stack>
                 </Container>
             </Box>
+
 
             <Footer />
         </Box>
