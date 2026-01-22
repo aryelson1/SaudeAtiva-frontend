@@ -4,7 +4,6 @@ import { SearchOff } from '@mui/icons-material';
 
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
-import { BenefitsSection } from '@/components/Benefits';
 import { ProfissionalCard } from '@/components/ProfissionalCard';
 import { ProfissionalFilter } from '@/components/ProfissionalFilter';
 import { Footer } from '@/components/Footer';

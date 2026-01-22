@@ -43,7 +43,7 @@ export interface IUpdateProfissional {
 
 export interface ILoginProfissional {
     cpf: string;
-    senha:  string;
+    password:  string;
 }
 
 export interface IProfissionalWithRelations extends IProfissional {

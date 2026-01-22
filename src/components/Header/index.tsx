@@ -15,7 +15,7 @@ import {
     useScrollTrigger,
     Slide,
 } from '@mui/material';
-import { Menu as MenuIcon, Close, Favorite, Login, PersonAdd } from '@mui/icons-material';
+import { Menu as MenuIcon, Close, Favorite, Login } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 interface HideOnScrollProps {
@@ -93,24 +93,13 @@ export const Header:  React.FC = () => {
                 <Box sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap:  2 }}>
                     <Button
                         fullWidth
-                        variant="outlined"
-                        startIcon={<PersonAdd />}
-                        onClick={() => {
-                            navigate('/login/profissional');
-                            handleDrawerToggle();
-                        }}
-                    >
-                        Sou Profissional
-                    </Button>
-                    <Button
-                        fullWidth
                         variant="contained"
                         startIcon={<Login />}
                         sx={{
                             background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                         }}
                         onClick={() => {
-                            navigate('/login/cliente');
+                            navigate('/login');
                             handleDrawerToggle();
                         }}
                     >

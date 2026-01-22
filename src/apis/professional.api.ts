@@ -15,7 +15,7 @@ const PROFISSIONAL_LIST = '/profissional';
 const PROFISSIONAL_LIST_PUBLIC = '/profissional/public';
 const PROFISSIONAL_LIST_PUBLIC_DETAILED = '/profissional/public/detailed';
 const PROFISSIONAL_CREATE = '/profissional';
-const PROFISSIONAL_LOGIN = '/profissional/login';
+const PROFISSIONAL_LOGIN = '/login/professional';
 const PROFISSIONAL_GET = (id: Uuid) => `/profissional/${id}`;
 const PROFISSIONAL_UPDATE = (id: Uuid) => `/profissional/${id}`;
 const PROFISSIONAL_DELETE = (id: Uuid) => `/profissional/${id}`;
@@ -53,6 +53,7 @@ http.interceptors.response.use(
 export const ProfissionalApi = {
     // Login
     login: async (credentials: ILoginProfissional): Promise<string> => {
+        console.log("API LOGIN PROFISSIONAL", credentials);
         const res = await http.post<{ token: string; profissional: IProfissional }>(
             PROFISSIONAL_LOGIN,
             credentials
