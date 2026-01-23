@@ -114,3 +114,29 @@ export interface IListProfissionalPublicResponse {
         totalPsicologos: number;
     };
 }
+
+export interface IProfissionalDashboardBase {
+    agendamentosHoje: number;
+    faturamentoMes: number;
+}
+
+export interface IProfissionalDashboardNutricionista
+    extends IProfissionalDashboardBase {
+
+    evolucoesRecentes: any[];
+}
+
+export interface IProfissionalDashboardPsicologo
+    extends IProfissionalDashboardBase {
+
+    sessoesRealizadas: number;
+}
+
+export interface IProfissionalDashboardResponse {
+    profissional: {
+        id: string;
+        nome: string;
+        tipo: 'NUTRICIONISTA' | 'PSICOLOGO';
+        ativo: boolean;
+    };
+}

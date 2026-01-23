@@ -19,11 +19,12 @@ const PROFISSIONAL_LOGIN = '/login/professional';
 const PROFISSIONAL_GET = (id: Uuid) => `/profissional/${id}`;
 const PROFISSIONAL_UPDATE = (id: Uuid) => `/profissional/${id}`;
 const PROFISSIONAL_DELETE = (id: Uuid) => `/profissional/${id}`;
+const PROFISSIONAL_DASHBOARD = (id: Uuid) => `/profissional/${id}/dashboard`;
 
 const http: AxiosInstance = axios.create({
     baseURL: `http://localhost:7070/api/`,
     timeout: 15000,
-    headers:  {},
+    headers: {},
 });
 
 http.interceptors.request.use(
@@ -35,14 +36,14 @@ http.interceptors.request.use(
         return config;
     },
     (error) => {
-        return Promise. reject(error);
+        return Promise.reject(error);
     }
 );
 
 http.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error. response?.status === 401) {
+        if (error.response?.status === 401) {
             logout();
         }
 
@@ -53,7 +54,6 @@ http.interceptors.response.use(
 export const ProfissionalApi = {
     // Login
     login: async (credentials: ILoginProfissional): Promise<string> => {
-        console.log("API LOGIN PROFISSIONAL", credentials);
         const res = await http.post<{ token: string; profissional: IProfissional }>(
             PROFISSIONAL_LOGIN,
             credentials
@@ -110,7 +110,7 @@ export const ProfissionalApi = {
 
     // Listar público (para tela inicial)
     listPublic: async (params?: {
-        tipo?:  'NUTRICIONISTA' | 'PSICOLOGO';
+        tipo?: 'NUTRICIONISTA' | 'PSICOLOGO';
         especialidade?: string;
         search?: string;
         page?: number;
@@ -138,4 +138,17 @@ export const ProfissionalApi = {
         }
         return undefined;
     },
+
+    // Dashboard profissional
+    dashboard: async (id: Uuid): Promise<any | undefined> => {
+
+        const res = await http.get(PROFISSIONAL_DASHBOARD(id));
+
+        if (res.status === 200) {
+            return res.data;
+        }
+
+        return undefined;
+    },
+
 };

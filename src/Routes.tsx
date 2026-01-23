@@ -4,6 +4,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Page } from './pages/enums.ts';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import DashboardPage from './pages/DashBoard/index.tsx';
+
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@/theme';
 
@@ -32,6 +34,7 @@ function App(): React.JSX.Element {
                         <Route path={Page.Login} Component={LoginPage} />
 
                         <Route element={<ProtectedRoute />}>
+                            <Route path={Page.Dashboard} Component={DashboardPage} />
                         </Route>
                     </Routes>
                 </Router>

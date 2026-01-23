@@ -186,7 +186,7 @@ export const Header:  React.FC = () => {
                                 </Button>
                                 <Button
                                     variant="contained"
-                                    onClick={() => navigate('/login/cliente')}
+                                    onClick={() => navigate('/login')}
                                     sx={{
                                         background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                                         px: 3,

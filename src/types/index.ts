@@ -1,3 +1,1 @@
-export type * from './vehicle.d';
-export type * from './fleet.d';
-export type * from './device.d';
+// export type * from './profissional.d';

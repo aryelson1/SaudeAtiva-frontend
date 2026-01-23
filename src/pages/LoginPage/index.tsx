@@ -28,14 +28,14 @@ const LoginPage: React.FC = () => {
 
         try {
 
-            if(tipo == 1){
+            if (tipo == 1) {
                 const response = await ProfissionalApi.login({ cpf, password: senha });
                 localStorage.setItem("token", response);
+                window.location.href = "/dashboard";
             } else {
-               console.log("Login Cliente");
+                console.log("Login Cliente");
             }
- 
-            window.location.href = tipo === 0 ? "/cliente" : "/profissional";
+
         } catch (err: any) {
             setError(err.response?.data?.message || "Erro ao realizar login");
         } finally {
