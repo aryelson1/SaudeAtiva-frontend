@@ -12,6 +12,8 @@ import { theme } from '@/theme';
 import type { ThemeOptions } from '@mui/material/styles';
 
 import { ProtectedRoute } from './components/ProtectedRoute/index.tsx';
+import QuestionnairePage from './pages/Questionnaire/index.tsx';
+import { SnackbarProvider } from 'notistack';
 
 export const themeOptions: ThemeOptions = {
     palette: {
@@ -28,16 +30,25 @@ export const themeOptions: ThemeOptions = {
 function App(): React.JSX.Element {
     return (
         <ThemeProvider theme={theme}>
-                <Router>
-                    <Routes>
-                        <Route path={Page.Home} Component={HomePage} />
-                        <Route path={Page.Login} Component={LoginPage} />
+            <SnackbarProvider
+                maxSnack={3}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                autoHideDuration={3000}
+            ></SnackbarProvider>
+            <Router>
+                <Routes>
+                    <Route path={Page.Home} Component={HomePage} />
+                    <Route path={Page.Login} Component={LoginPage} />
 
-                        <Route element={<ProtectedRoute />}>
-                            <Route path={Page.Dashboard} Component={DashboardPage} />
-                        </Route>
-                    </Routes>
-                </Router>
+                    <Route element={<ProtectedRoute />}>
+                        <Route path={Page.Dashboard} Component={DashboardPage} />
+                        <Route path={Page.Questionnaire} Component={QuestionnairePage} />
+                    </Route>
+                </Routes>
+            </Router>
         </ThemeProvider>
     );
 }

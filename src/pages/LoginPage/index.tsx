@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { Email, Lock, Person, MedicalServices } from "@mui/icons-material";
 import { ProfissionalApi } from "@/apis/professional.api";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
     const [tipo, setTipo] = useState<0 | 1>(0); // 0 = Cliente | 1 = Profissional
@@ -21,7 +22,7 @@ const LoginPage: React.FC = () => {
     const [senha, setSenha] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
+    const navigate = useNavigate();
     const handleLogin = async () => {
         setLoading(true);
         setError(null);
@@ -31,7 +32,7 @@ const LoginPage: React.FC = () => {
             if (tipo == 1) {
                 const response = await ProfissionalApi.login({ cpf, password: senha });
                 localStorage.setItem("token", response);
-                window.location.href = "/dashboard";
+                navigate("/dashboard");
             } else {
                 console.log("Login Cliente");
             }
